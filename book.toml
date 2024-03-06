@@ -1,6 +1,0 @@
-[book]
-authors = ["Fernando Otero", "Samuel Vanderwaal"]
-language = "en"
-multilingual = false
-src = "src"
-title = "nifty-docs"

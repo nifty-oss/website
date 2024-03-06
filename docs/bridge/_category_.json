@@ -1,0 +1,8 @@
+{
+    "label": "Nifty Bridge",
+    "position": 2,
+    "link": {
+        "type": "generated-index",
+        "description": "Port Metaplex NFTs to Nifty Assets"
+    }
+}

@@ -1,3 +1,9 @@
+---
+sidebar_label: 'Overview'
+sidebar_position: 1
+---
+
+
 # Overview
 
 Current NFT standards on Solana are built on top of SPL Token, which is a fungible token program. A non-fungible is created by adding restrictions to fungible mints – i.e., for a mint to be considered "non-fungible", it must have supply 1, decimals 0 and no mint authority. As a consequence, NFT standards carry "baggage" from the requirements of fungibles to represent non-fungibles. For example, non-fungibles have a supply of 1 by definition, but you still need a separate mint and token accounts.
