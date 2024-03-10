@@ -1,3 +1,8 @@
+---
+sidebar_label: 'Features'
+sidebar_position: 1
+---
+
 # Features
 
 Nifty is designed as a fully-featured digital asset standard for Solana, while also being lightweight and efficient. It is designed to be a minimalistic and flexible standard for representing non-fungible assets on Solana.
@@ -31,13 +36,13 @@ Storing large amounts of data in Solana account data is quite expensive, but thi
 ### On-Chain Metadata
 
 The `Metadata` extension allows for the NFT to have a symbol and uri pointing to off-chain metadata, for compatibility with existing NFT standards.
-This is one way to attach external data (e.g. image, description, traits) to a Nifty asset. The `Links` extension is a more generic way to do this.
+This is one way to attach external data (e.g. image, description, traits) to a Nifty asset. In addition, the `Links` extension is a more generic way to do this.
 
 ### Royalty Enforcement
 
 Nifty encodes royalty enforcement directly into its transfer instruction, ensuring that creators receive a portion of the proceeds from secondary sales. This is done via the `Royalty` and `Creators` extensions.
 The `Creators` extension specifies the recipients and share of any royalties. The `Royalty` extension is a system of composable `Constraints` that can be used to create restrictions such as an Allowlist or Denylist.
-This can be used to exclude or include specific programs as valid owners of the asset.
+This can be used to exclude or include specific programs as valid owners of the asset, similar to the approach used by pNFTs in the Metaplex standard.
 
 ### On-Chain Grouping/Collections
 
@@ -61,4 +66,4 @@ This allows creating a delegate for a Nifty asset that can perform specific acti
 
 ### Locking and Unlocking of Assets
 
-Nifty assets can be locked and unlocked. This is useful for escrowless marketplaces, for example. When an asset is locked, it cannot be transferred. When an asset is unlocked, it can be transferred again.
+Nifty assets can be locked and unlocked. This is useful for applications such as escrowless marketplaces. When an asset is locked, it cannot be transferred. When an asset is unlocked, it can be transferred again.
