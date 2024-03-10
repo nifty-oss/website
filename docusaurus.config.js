@@ -13,15 +13,16 @@ const config = {
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://nifty-oss.github.io",
+  url: "https://nifty-oss.github.io/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/docs",
+  baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "nifty-oss", // Usually your GitHub org/user name.
   projectName: "docs", // Usually your repo name.
+  trailingSlash: false,
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -41,13 +42,6 @@ const config = {
       ({
         docs: {
           sidebarPath: "./sidebars.js",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
-        },
-        blog: {
-          showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
@@ -78,7 +72,6 @@ const config = {
             position: "left",
             label: "Docs"
           },
-          { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/nifty-oss/asset",
             label: "GitHub",
@@ -102,14 +95,6 @@ const config = {
             title: "Community",
             items: [
               {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus"
-              },
-              {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus"
-              },
-              {
                 label: "Twitter",
                 href: "https://twitter.com/nifty_oss"
               }
@@ -119,12 +104,8 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
-                to: "/blog"
-              },
-              {
                 label: "GitHub",
-                href: "https://github.com/facebook/docusaurus"
+                href: "https://github.com/nifty-oss/asset"
               }
             ]
           }
