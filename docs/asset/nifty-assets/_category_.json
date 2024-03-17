@@ -1,8 +1,8 @@
 {
-    "label": "Clients",
+    "label": "Nifty Assets",
     "position": 2,
     "link": {
         "type": "generated-index",
-        "description": "Rust and JavaScript clients"
+        "description": "Nifty digital assets"
     }
 }

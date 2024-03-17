@@ -13,15 +13,16 @@ const config = {
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
-  url: "https://your-docusaurus-site.example.com",
+  url: "https://nifty-oss.org/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "nifty-oss", // Usually your GitHub org/user name.
+  projectName: "nifty-docs", // Usually your repo name.
+  trailingSlash: false,
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -46,13 +47,6 @@ const config = {
           editUrl:
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
-        },
         theme: {
           customCss: "./src/css/nifty.css"
         }
@@ -63,8 +57,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
-      image: "img/docusaurus-social-card.jpg",
+      image: "img/nifty-oss-social-card.jpg",
       navbar: {
         title: "Nifty OSS",
         logo: {
@@ -78,7 +71,6 @@ const config = {
             position: "left",
             label: "Docs"
           },
-          { to: "/blog", label: "Blog", position: "left" },
           {
             href: "https://github.com/nifty-oss/asset",
             label: "GitHub",
@@ -94,21 +86,13 @@ const config = {
             items: [
               {
                 label: "Documentation",
-                to: "/docs/intro"
+                to: "/docs/quickstart"
               }
             ]
           },
           {
             title: "Community",
             items: [
-              {
-                label: "Stack Overflow",
-                href: "https://stackoverflow.com/questions/tagged/docusaurus"
-              },
-              {
-                label: "Discord",
-                href: "https://discordapp.com/invite/docusaurus"
-              },
               {
                 label: "Twitter",
                 href: "https://twitter.com/nifty_oss"
@@ -119,12 +103,8 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
-                to: "/blog"
-              },
-              {
                 label: "GitHub",
-                href: "https://github.com/facebook/docusaurus"
+                href: "https://github.com/nifty-oss/asset"
               }
             ]
           }

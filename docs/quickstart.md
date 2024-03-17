@@ -6,9 +6,21 @@ sidebar_position: 3
 
 ## CLI
 
-You can install the bundled Nifty CLI to start playing around with Nift assets:
+You can install the bundled Nifty CLI to start playing around with Nift assets.
 
-With `pnpm` from the root directory of the `nifty-asset` respository:
+### Download Pre-Built Binary
+
+**Todo**
+
+### Install from Source
+
+Requires [Rust to be installed](https://www.rust-lang.org/learn/get-started):
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Now you can install with `pnpm` from the root directory of the `nifty-asset` respository:
 
 ```bash
 pnpm clients:cli:install
@@ -38,13 +50,13 @@ Usage: nifty [OPTIONS] <COMMAND>
 
 Commands:
   burn      Burn an asset
-  mint      
-  create    Create an asset
+  mint      Create an asset with extensions
+  create    Create a basic asset without extensions
   decode    Get an asset account's data and decode it
   approve   Set a delegate on an asset with specific roles
   lock      Lock an asset, preventing any actions to be performed on it
   revoke    Revoke a delegate from an asset
-  transfer  Transfer an asset to a new holder
+  transfer  Transfer an asset to a new owner
   unlock    Unlock an asset, allowing actions to be performed on it
   help      Print this message or the help of the given subcommand(s)
 
@@ -55,14 +67,14 @@ Options:
   -V, --version                      Print version
 ```
 
-Runing `--help` or `-h` on subcommands will give you more information about the available options and usage.
+To see the help for a specific command, run the command with the `--help` option, e.g.:
 
 ```bash
-nifty create -h
+nifty create --help
 ```
 
 ```
-Create an asset
+Create a basic asset without extensions
 
 Usage: nifty create [OPTIONS] --name <NAME>
 
@@ -82,6 +94,8 @@ Options:
   -h, --help
           Print help
 ```
+
+
 
 We install the Solana CLI which we use to set and configure both a default keypair and RPC node URL:
 
@@ -111,7 +125,8 @@ You will see the transaction signature and the asset account address similar to 
 Asset 5to4wpbDE1KkBHKgFYFVEBz3UBFRqpovSgQYJzSbTe85 created in tx: EizjhztpEZfnqD8zccLEybF1L3qtbGRQXhmjMQi6wA15Sege3pv6giy8ErsjAu65W6tGC83UU185CEt4tYAkGP8
 ```
 
-You can use the [Solana Explorer]](https://explorer.solana.com/) to see the asset account details.
+You can use the [Solana Explorer](https://explorer.solana.com/) to see the asset account details.
+
 
 ### Example: Decode an asset account
 

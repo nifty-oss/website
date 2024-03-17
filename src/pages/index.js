@@ -19,7 +19,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro"
+            to="/docs/quickstart"
           >
             Nifty Quickstart - 5min ⏱️
           </Link>
@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      description="Nifty digital asset standard on Solana."
     >
       <HomepageHeader />
       <main>
