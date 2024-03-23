@@ -43,3 +43,14 @@
 .footer a:hover {
   color: #ffdfff; /* Lighter color when hovering over links */
 }
+
+.account-layout-table th {
+  text-align: center;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+
+.account-layout-table td {
+  border: 1px solid #ddd;
+  border-top: none;
+}

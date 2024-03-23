@@ -16,30 +16,30 @@ Nifty Assets are composed of two parts:
 
 ### Account layout
 
-
-<table>
+<!-- Begin table -->
+<table class="account-layout-table">
     <thead>
         <tr>
-            <th colspan="1" style="text-align:center; border: 1px solid #ffff"><i>Base</i></th>
-            <th colspan="4" style="text-align:center; border: 1px solid #ffff"><i>Optional Extensions</i></th>
+            <th colspan="1"><i>Base Metadata</i></th>
+            <th colspan="4"><i>Optional Extensions</i></th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="border: 1px solid">Asset</td>
-            <td style="border: 1px solid">Extension 1 + Extension Data</td>
-            <td style="border: 1px solid">...</td>
-            <td style="border: 1px solid">Extension n + Extension Data</td>
+            <td>Asset</td>
+            <td>Extension 1 + Extension Data</td>
+            <td>...</td>
+            <td>Extension n + Extension Data</td>
         </tr>
         <tr>
-            <td style="border: 1px solid">168 bytes</td>
-            <td style="border: 1px solid">16 bytes + variable bytes</td>
-            <td style="border: 1px solid">...</td>
-            <td style="border: 1px solid">16 bytes + variable bytes</td>
+            <td>168 bytes</td>
+            <td>16 bytes + variable bytes</td>
+            <td>...</td>
+            <td>16 bytes + variable bytes</td>
         </tr>
     </tbody>
 </table>
-
+<!-- End table -->
 
 
 
