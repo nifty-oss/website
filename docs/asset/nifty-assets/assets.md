@@ -11,8 +11,35 @@ Here we examine their make up and features in-depth.
 
 Nifty Assets are composed of two parts:
 
-* Base Metadata, which is common to every Nifty Asset and
+* Base Metadata, which is fixed size and common to every Nifty Asset and
 * Extensions, which are optional and can be combined to create a wide variety of non-fungible assets, from simple to complex.
+
+### Account layout
+
+
+<table>
+    <thead>
+        <tr>
+            <th colspan="1" style="text-align:center; border: 1px solid #ffff"><i>Base</i></th>
+            <th colspan="4" style="text-align:center; border: 1px solid #ffff"><i>Optional Extensions</i></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="border: 1px solid">Asset</td>
+            <td style="border: 1px solid">Extension 1 + Extension Data</td>
+            <td style="border: 1px solid">...</td>
+            <td style="border: 1px solid">Extension n + Extension Data</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid">168 bytes</td>
+            <td style="border: 1px solid">16 bytes + variable bytes</td>
+            <td style="border: 1px solid">...</td>
+            <td style="border: 1px solid">16 bytes + variable bytes</td>
+        </tr>
+    </tbody>
+</table>
+
 
 
 
