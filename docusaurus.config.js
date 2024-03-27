@@ -100,6 +100,10 @@ const config = {
               {
                 label: "Twitter",
                 href: "https://twitter.com/nifty_oss"
+              },
+              {
+                label: "Discord",
+                href: "https://discord.gg/ZJebrdQr7K"
               }
             ]
           },
