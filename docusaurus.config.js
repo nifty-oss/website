@@ -8,8 +8,8 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Nifty OSS",
-  tagline: "Nifty Digital Assets",
+  title: "nifty-oss",
+  tagline: "Open source protocols for digital assets on Solana",
   favicon: "img/favicon.ico",
 
   // Set the production url of your site here
@@ -44,8 +44,8 @@ const config = {
           sidebarPath: "./sidebars.js",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
+          //editUrl:
+          //  "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
         },
         theme: {
           customCss: "./src/css/nifty.css"
@@ -59,17 +59,17 @@ const config = {
     ({
       image: "img/nifty-oss-social-card.jpg",
       navbar: {
-        title: "Nifty OSS",
+        title: "nifty-oss",
         logo: {
-          alt: "Nifty Logo",
-          src: "img/logo.jpg"
+          alt: "nifty-oss",
+          src: "img/nifty-logo-small.png"
         },
         items: [
           {
             type: "docSidebar",
             sidebarId: "docsSidebar",
             position: "left",
-            label: "Docs"
+            label: "documentation"
           },
           {
             href: "https://github.com/nifty-oss/asset",
@@ -82,10 +82,14 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "Docs",
+            title: "Documentation",
             items: [
               {
-                label: "Documentation",
+                label: "Overview",
+                to: "/docs/asset/overview"
+              },
+              {
+                label: "Quickstart",
                 to: "/docs/quickstart"
               }
             ]
@@ -109,7 +113,7 @@ const config = {
             ]
           }
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Nifty OSS - Built with Docusaurus.`
+        copyright: `Copyright © ${new Date().getFullYear()} nifty-oss`
       },
       prism: {
         theme: prismThemes.github,

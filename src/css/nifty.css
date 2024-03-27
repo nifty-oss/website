@@ -6,42 +6,39 @@
 
 /* You can override the default Infima variables here. */
 :root {
-    --ifm-color-primary: #B181CB;
-    --ifm-color-primary-dark: #aa75c6;
-    --ifm-color-primary-darker: #a771c4;
-    --ifm-color-primary-darkest: #a46cc2;
-    --ifm-color-primary-light: #c099d5;
-    --ifm-color-primary-lighter: ##c7a4da;
-    --ifm-color-primary-lightest: ##ddc8e8;
-    --ifm-code-font-size: 95%;
-    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-color-primary: #20232a;
+  --ifm-color-primary-dark: #1d1f26;
+  --ifm-color-primary-darker: #1b1e24;
+  --ifm-color-primary-darkest: #16181d;
+  --ifm-color-primary-light: #23262e;
+  --ifm-color-primary-lighter: #252830;
+  --ifm-color-primary-lightest: #2a2d37;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-    --ifm-color-primary: #B181CB;
-    --ifm-color-primary-dark: #733998;
-    --ifm-color-primary-darker: #6d3690;
-    --ifm-color-primary-darkest: #5a2c76;
-    --ifm-color-primary-light: #8d45ba;
-    --ifm-color-primary-lighter: ##924ebd;
-    --ifm-color-primary-lightest: ##9a5bc2;
-    --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #9fa099;
+  --ifm-color-primary-dark: #909189;
+  --ifm-color-primary-darker: #888981;
+  --ifm-color-primary-darkest: #70716a;
+  --ifm-color-primary-light: #aeafa9;
+  --ifm-color-primary-lighter: #b6b7b1;
+  --ifm-color-primary-lightest: #cdcdca;
 }
 
 .footer {
-  background-color: #803fa9; /* Dark background for the footer */
-  color: #ddc8e8; /* Text color */
+  background-color: #242526; /* Dark background for the footer */
+  color: #FFFFFF; /* Text color */
   padding: 20px 0; /* Padding on the top and bottom */
   text-align: center; /* Center the text */
 }
 
 .footer a {
-  color: #efdaff; /* Light color for links */
+  color: #FFFFFF; /* Light color for links */
 }
 
 .footer a:hover {
-  color: #ffdfff; /* Lighter color when hovering over links */
+  color: #CC4B22; /* Lighter color when hovering over links */
 }
 
 .account-layout-table th {

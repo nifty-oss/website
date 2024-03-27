@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
-import Flexibility from "@site/static/img/flexibility.webp";
-import Composability from "@site/static/img/composability.webp";
-import Simplicity from "@site/static/img/simplicity.webp";
+import Flexibility from "@site/static/img/flexible.jpg";
+import Composability from "@site/static/img/composable.jpg";
+import Simplicity from "@site/static/img/simple.jpg";
 
 const FeatureList = [
   {
@@ -11,9 +11,8 @@ const FeatureList = [
     Image: Flexibility,
     description: (
       <>
-        Nifty Assets provide a base set of data along with optional extensions
-        for customization. Choose to have a fully on-chain asset or point to
-        external data.
+        <b>Nifty Asset</b>: a lightweight standard for non-fungible assets. It provides a base set of data along with optional extensions
+        for customization.
       </>
     )
   },
@@ -22,7 +21,8 @@ const FeatureList = [
     Image: Composability,
     description: (
       <>
-        With minimal accounts and compute usage, Nifty is designed to be highly
+        Choose to have a fully on-chain asset or point to
+        external data. With minimal accounts and compute usage, Nifty Asset is designed to be highly
         composable and extensible.
       </>
     )
@@ -32,7 +32,7 @@ const FeatureList = [
     Image: Simplicity,
     description: (
       <>
-        With a single account representing the Asset, complexity and costs are
+        With a single account representing an asset, complexity and costs are
         kept to a minimum.
       </>
     )
