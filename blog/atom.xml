@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://nifty-oss.org/blog</id>
+    <title>nifty-oss Blog</title>
+    <updated>2024-04-04T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://nifty-oss.org/blog"/>
+    <subtitle>nifty-oss Blog</subtitle>
+    <icon>https://nifty-oss.org/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Extending program behaviour using a Proxy Pattern]]></title>
+        <id>https://nifty-oss.org/blog/proxy-pattern</id>
+        <link href="https://nifty-oss.org/blog/proxy-pattern"/>
+        <updated>2024-04-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[...and defining a program interface in the process.]]></summary>
+        <content type="html"><![CDATA[<p><em>...and defining a program interface in the process.</em></p>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>TL;DR</div><div class="admonitionContent_BuS1"><ul>
+<li>Nifty Asset program provides a program interface for developers to fully customise its behaviour.</li>
+<li>Follows a simpler and yet more powerful pattern than "hooks".</li>
+<li>No changes are required on the program to support new behaviour.</li>
+<li>Client SDK makes using it nearly as trivial as using Nifty Asset directly.</li>
+</ul></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="introduction">Introduction<a href="https://nifty-oss.org/blog/proxy-pattern#introduction" class="hash-link" aria-label="Direct link to Introduction" title="Direct link to Introduction">​</a></h3>
+<p>The standard method for extending the behaviour of a program to execute custom logic on Solana involves using "hooks," which are program-defined callbacks. These callbacks allow a program to incorporate custom logic from a predetermined "hooked" program via Cross-Program Invocation (CPI). This method was first introduced by the Token Extensions program (also known as SPL Token-2022) and its Transfer Hook extension –&nbsp;its purpose is to be able to execute custom logic every time a token from a particular mint is transferred,  including logic that could "block" the transfer of the token.</p>
+<p align="center"></p><figure><img src="https://nifty-oss.org/assets/images/hook-pattern-f091740d20ed25da8a35c9c5ea4dfc12.jpg" alt="Hook Pattern" width="500"><figcaption><b>The Hook pattern:</b> Program B is a <i>hook</i> on Program A. Program A includes custom logic to invoke Program B.</figcaption></figure><p></p>
+<p>The Transfer Hook extension defines a common interface that programs must implement to receive transfer CPI callbacks when a token from a specific mint account is transferred. This callback is guaranteed to occur every time a mint with a transfer hook is transferred. Although this method enables various use cases, including deciding whether a transfer should succeed or not, it has an two important limitations: (1) the target program must embed the logic for hooks, and (2) the hooked program cannot write additional data to an account owned by the target program or perform any other instruction involving the target program. The second limitation arrises from the rule that prohibits program reentry – e.g., if Program A invokes Program B, Program B cannot invoke Program A. While it is possible that a program (Program B) returns data from a CPI call, deciding what to do with the data requires custom logic on the target program (Program A) and the types of actions to be performed will always be limited by the existing logic – new "actions" can only happen if the logic for them is added on Program A.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="enter-a-new-pattern-proxy">Enter a new pattern: Proxy<a href="https://nifty-oss.org/blog/proxy-pattern#enter-a-new-pattern-proxy" class="hash-link" aria-label="Direct link to Enter a new pattern: Proxy" title="Direct link to Enter a new pattern: Proxy">​</a></h3>
+<p>For those who are already familiar with design patterns for object-oriented programming, a "<i>Proxy provides a surrogate or placeholder for another object to control access to it</i>". Replace "another object" by "another program", and now we have a pattern to gate access to a program. Going back to the initial example of the mint account, our aim is to have a Program B that defines custom behaviour any time Program A is called to transfer a token from a specific mint. In this case, Program B acts as a proxy to Program A. In other words, we flip the "hook" model upside-down and invert its order: Program B (the one that adds custom logic) receives the instruction, performs any custom logic and forwards the instruction to Program A (the one that actually performs the transfer).</p>
+<p align="center"></p><figure><img src="https://nifty-oss.org/assets/images/proxy-pattern-4162c32d85c196075610009305e98933.jpg" alt="Proxy Pattern" width="500"><figcaption><b>The Hook pattern:</b> Program B is a hook on Program A. Program A includes custom logic to invoke Program B.</figcaption></figure><p></p>
+<p>This pattern offers two significant benefits. First, it removes the limitations on CPIs from Program B to Program A, allowing Program B to make CPI calls that write additional data to accounts controlled by Program A. Second, Program A is not required to incorporate any custom logic for "hooks" and it does not even need to be aware of any additional logic that was performed.</p>
+<p>You might be wondering how to ensure that the proxy program (Program B) is always invoked when an account from Program A is being manipulated. The answer is Program Derived Addresses (PDAs) combined with a simple rule: when Program A is manipulating a "proxied" account –&nbsp;an account that was created as a PDA from Program B – it always requires the account to be a signer. Since a PDA can only be signed by the program from which it was derived, this guarantees that the instruction must be going through the proxy program – the proxy program (Program B) adds the PDA signature for the account before forwarding the instruction to Program A.</p>
+<p>For the Proxy pattern to work, the proxy program (Program B) supports the same instructions layout as the target program (Program A) and can add any custom logic when processing these instructions.</p>
+<p>We now have a generic pattern to create extensible programs and, in the process, we defined a way to specify program interfaces –&nbsp;it is possible to compose programs together sharing the same interface to add additional behaviour.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="putting-it-all-together">Putting it all together<a href="https://nifty-oss.org/blog/proxy-pattern#putting-it-all-together" class="hash-link" aria-label="Direct link to Putting it all together" title="Direct link to Putting it all together">​</a></h3>
+<p>Nifty Asset is the first program implementing the Proxy pattern to allow developers extend its behaviour. This is achieved by:</p>
+<ol>
+<li>Using a "Proxy" extension to identify accounts that are "proxied" – these accounts will be required to be a signer on instructions that manipulate them. The extension stores the information for clients to determine the address (<code>pubkey</code>) of the proxy program; it also includes the <code>seeds</code> and <code>bump</code> information for a proxy program to add a signature for the account.</li>
+</ol>
+<p align="center"></p><figure><img src="https://nifty-oss.org/assets/images/proxy-extension-1ffba0bbd77b5a796b9bb3e066be0ce9.png" alt="Proxy Extension" width="300"></figure><p></p>
+<ol start="2">
+<li>Providing a program interface so proxy programs can parse Nifty Asset instructions. Proxy programs implement handlers for each of these instructions to add custom behaviour; the program can also decide that some instructions are not allowed and therefore cannot be executed. The main purpose of the proxy program is to sign the instruction on behalf of the asset account – the address of the asset account is a PDA of the proxy program, so it is the only program that can sign the instruction. Without its signature, the Nifty Asset program will not execute an instruction manipulating a "proxied" asset.</li>
+</ol>
+<p align="center"></p><figure><img src="https://nifty-oss.org/assets/images/processor-89648cfdd9b5b9d14a2f58c6e1ffe8d4.png" alt="Processor" width="500"></figure><p></p>
+<ol start="3">
+<li>Extending the JavaScript SDK to support executing instructions using a proxy. This is as simple as executing instructions directly on Nifty Asset program. Every instruction builder has an optional "proxy" argument, which corresponds to the address of the proxy program to use when one is needed.</li>
+</ol>
+<p align="center"></p><figure><img src="https://nifty-oss.org/assets/images/sdk-proxy-2a5848ae81f49ef81fd584e112524d9d.png" alt="SDK" width="450"></figure><p></p>
+<p>The GitHub <a href="https://github.com/nifty-oss/asset" target="_blank" rel="noopener noreferrer">⎘repository</a> includes an example of a proxy program that tracks the number of times an asset has been transferred and changes the colour of its on-chain image on every transfer.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="summary">Summary<a href="https://nifty-oss.org/blog/proxy-pattern#summary" class="hash-link" aria-label="Direct link to Summary" title="Direct link to Summary">​</a></h3>
+<p>The Proxy pattern provides a simple, non-intrusive, yet powerful way to extend the behaviour of a program. It allows adding custom behaviour without requiring modifications to the program and avoids limitations of CPI reentrancy and use of return data.</p>
+<p>Nifty Asset now provides a program interface for developers to build on top and fully customise its behaviour.</p>]]></content>
+        <author>
+            <name>febo</name>
+            <uri>https://github.com/febo</uri>
+        </author>
+        <category label="solana" term="solana"/>
+        <category label="program" term="program"/>
+        <category label="interface" term="interface"/>
+        <category label="extensions" term="extensions"/>
+    </entry>
+</feed>
