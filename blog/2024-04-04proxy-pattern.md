@@ -1,7 +1,6 @@
 ---
 slug: proxy-pattern
 title: Extending program behaviour using a Proxy Pattern
-description: This is my first post on Docusaurus.
 authors: [febo]
 tags: [solana, program, interface, extensions]
 ---
@@ -13,7 +12,7 @@ tags: [solana, program, interface, extensions]
 - Nifty Asset program provides a program interface for developers to fully customise its behaviour.
 - Follows a simpler and yet more powerful pattern than "hooks".
 - No changes are required on the program to support new behaviour.
-- Client SDK that make using it nearly as trivial as using Nifty Asset directly.
+- Client SDK makes using it nearly as trivial as using Nifty Asset directly.
 
 :::
 
