@@ -44,7 +44,7 @@ For those who are already familiar with design patterns for object-oriented prog
         alt="Proxy Pattern"
         width="500"
         />
-        <figcaption><b>The Hook pattern:</b> Program B is a hook on Program A. Program A includes custom logic to invoke Program B.</figcaption>
+        <figcaption><b>The Proxy pattern:</b> Program B is a proxy to Program A, performing any custom logic without knowledge from Program A.</figcaption>
     </figure>
 </p>
 
