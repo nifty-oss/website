@@ -1,6 +1,6 @@
 ---
 slug: proxy-pattern
-title: Extending program behaviour using a Proxy Pattern
+title: Extending program behaviour using a Proxy pattern
 authors: [febo]
 tags: [solana, program, interface, extensions]
 ---
