@@ -16,7 +16,7 @@ Even though Nifty is not the only NFT standard in the Solana space, we believe i
 
 Nifty Asset has been carefully designed to have minimal footprint, in terms of both cost and compute units consumption. It is a lightweight protocol that favours composibility and provides a fully extensible architecture. Nifty Asset implements the [⎘proxy pattern](./blog/proxy-pattern), so developers can customize every aspect of the protocol without requiring direct changes to it.
 
-Choice is good and it is up to the community to decide which solutions are most appropriate for their use-case The table below summarises how Nifty Asset compares to other popular metadata standards on Solana.
+Choice is good and it is up to the community to decide which solutions are most appropriate for their use-case. The table below summarises how Nifty Asset compares to other popular metadata standards on Solana.
 
 <p align="center">
     <figure>
