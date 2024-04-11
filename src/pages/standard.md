@@ -10,25 +10,30 @@
 </p>
 
 
-The choice of non-fungible (NFT) protocol matters. It lays the foundations for future ecosystem developments and needs to be free and fair for all. Commercialisation at the lowest protocol levels introduces unnecessary friction to the system and undermines the key principles of decentralization in Web3.
+A non-fungible (NFT) protocol guides future ecosystem developments for many use-cases, influencing both where and how NFTs are utilized. Minimizing friction then becomes important to not create unnecessary barriers that could hinder broader adoption. Even though Nifty Asset is not the only NFT standard in the Solana space, it was created to push NFTs on Solana forward, aiming to enable novel use-cases while improving existing ones.
 
-Even though Nifty is not the only NFT standard in the Solana space, we believe it is the way forward for NFTs, enabling a more open and fair Solana and also a solid technological investment for any project contemplating alternatives.
+Nifty Asset has been carefully designed to have a minimal footprint, in terms of both cost and compute units consumption. It is a lightweight protocol that favours composibility and provides a fully extensible architecture. In addition to a set of optional extensions that can be attached to digital assets, it follows the [⎘Proxy Pattern](./blog/proxy-pattern) to provide developers a program interface to customize every aspect of the protocol without requiring direct changes to it. The main features of the protocol are:
 
-Nifty Asset has been carefully designed to have minimal footprint, in terms of both cost and compute units consumption. It is a lightweight protocol that favours composibility and provides a fully extensible architecture. It follows the [⎘proxy pattern](./blog/proxy-pattern) to provide developers a program interface to customize every aspect of the protocol without requiring direct changes to it.
+- Single account to represent a digital asset.
+- Flexible on-chain representation: store as much or as little data using optional extensions.
+- Efficient zero-copy de-/serialization to minimize compute units utilization.
+- Full-featured standard, including royalty enforcement, delegates, lock/unlock, inscriptions and groups (collections).
+- Rust and JavaScript client SDKs.
 
-Choice is good and it is up to the community to decide which solutions are most appropriate for their use-case. The table below summarises how Nifty Asset compares to other popular metadata standards on Solana.
+Choice is good and it is up to the community to decide which solutions are most appropriate for their use-case. The table below summarises how Nifty Asset compares to other popular non-fungible protocols on Solana.
 
 <p align="center">
+    <figcaption><b>A comparison of different non-fungible protocols on Solana.</b></figcaption>
     <figure>
         <img
-        src={require('/img/standard/cost-table.png').default}
-        alt="Cost Table"
+        src={require('/img/standard/comparison.png').default}
+        alt="Comparison"
         />
     </figure>
 </p>
 
-The values on the table have been determined by executing the equivalent transactions on-chain using the same asset configuration. On the NFT case, it shows the costs using a standard configuration of an existing collection item. In all cases, the costs do not include the cost of creating the asset representing the collection; protocols fees are already included on the cost values.
+The values on the table have been determined by executing the equivalent transactions on-chain using the same asset configuration. The "basic" case represents the minimal asset that can be created with the protocol; the "nft" case represents an asset with a standard configuration found in the majority of existing collections. In all cases, the costs shown already include any protocol fees, if applicable.
 
-The costs for rent are fully refundable in the case Nifty Asset, which does not charge any protocol fees. In the case of Metaplex assets, the protocol fees are non-refundable and charged at the point of creation.
+The costs are fully refundable in the case of Nifty Asset and Token Extensions since they represent account rent costs only – these protocols do not charge any protocol fees. In the case of Metaplex assets, the protocol fees are non-refundable and charged at the point of creation. There are use-cases where this is important – e.g., the ability to fully recover the costs of an asset enables use-cases where NFTs are utilized as receipts/markers, which can eventually be redeemed to recover the full cost of them.
 
-There are other standards based on Token Extensions (SPL Token-2022) and we will update this table accordingly once the same evaluation is completed.
+It is worth nothing that Token Extensions (a.k.a. SPL Token 2022) is primarily a fungible protocol. It can be used as a non-fungible by adding restrictions to the supply of the mint account, but still requires the use of a token account to represent the owner of the non-fungible.
