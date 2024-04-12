@@ -51,13 +51,20 @@ const config = {
             type: "docSidebar",
             sidebarId: "docsSidebar",
             position: "left",
-            label: "documentation"
+            label: "Nifty Asset",
+            href: "/standard"
           },
           {
             type: "docSidebar",
             sidebarId: "docsSidebar",
             position: "left",
-            label: "blog",
+            label: "Documentation"
+          },
+          {
+            type: "docSidebar",
+            sidebarId: "docsSidebar",
+            position: "left",
+            label: "Blog",
             href: "/blog"
           },
           {
