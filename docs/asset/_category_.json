@@ -1,8 +1,8 @@
 {
-    "label": "Nifty Asset Program",
+    "label": "Nifty Asset",
     "position": 0,
     "link": {
         "type": "generated-index",
-        "description": "The Non-fungible asset standard."
+        "description": "A lightweight standard for non-fungible assets."
     }
 }
