@@ -7,7 +7,7 @@ sidebar_position: 1
 
 The Attributes extension allows creating a list of on-chain "traits" (key/value pairs) for an asset. The on-chain aspect means these values can be read by other Solana programs and therefore be used by them, e.g., for gaming.
 
-The extension consists of a list of `Trait`s, where each trait has a `name` and a `value` field.
+The extension consists of a list of `Trait`s, where each trait has a `name` and a `value` field:
 
 <!-- Begin table -->
 <table class="account-layout-table">
@@ -56,7 +56,7 @@ import TabItem from '@theme/TabItem';
     }).sendAndConfirm(umi);
     ```
   </TabItem>
-  <TabItem value="orange" label="Rust">
+  <TabItem value="rust" label="Rust">
     ```rust
     use nifty_asset::{
       extensions::{Attributes, AttributesBuilder, ExtensionBuilder},
@@ -73,13 +73,13 @@ import TabItem from '@theme/TabItem';
       .system_program(Some(system_program::id()))
       .extension(ExtensionInput {
         extension_type: ExtensionType::Attributes,
-        length: data.len() as u32,
-        data: Some(data),
+        length: attributes.len() as u32,
+        data: Some(attributes),
     })
     .instruction();
     ```
   </TabItem>
-  <TabItem value="banana" label="Rust (on-chain)">
+  <TabItem value="rust on-chain" label="Rust (on-chain)">
     ```rust
     use nifty_asset::{
       extensions::{Attributes, AllocateCpiBuilder, ExtensionBuilder},
@@ -96,8 +96,8 @@ import TabItem from '@theme/TabItem';
       .system_program(Some(ctx.accounts.system_program))
       .extension(ExtensionInput {
         extension_type: ExtensionType::Attributes,
-        length: data.len() as u32,
-        data: Some(data),
+        length: attributes.len() as u32,
+        data: Some(attributes),
     })
     .invoke();
     ```
@@ -127,7 +127,7 @@ Given an asset account, it is possible to retrieve the attributes of an asset. N
     }
     ```
   </TabItem>
-  <TabItem value="orange" label="Rust">
+  <TabItem value="rust" label="Rust">
     ```rust
     use nifty_asset::{
       extensions::Attributes,
@@ -140,11 +140,11 @@ Given an asset account, it is possible to retrieve the attributes of an asset. N
     let account_data = account.data.as_ref();
 
     if let Some(attributes) = Asset::get::<Attributes>(account_data) {
-      msg!("attributes: {:?}", attributes);
+      println!("attributes: {:?}", attributes);
     }
     ```
   </TabItem>
-  <TabItem value="banana" label="Rust (on-chain)">
+  <TabItem value="rust on-chain" label="Rust (on-chain)">
     ```rust
     use nifty_asset::{
       extensions::Attributes,

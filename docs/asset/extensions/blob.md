@@ -7,7 +7,7 @@ sidebar_position: 2
 
 The Binary Large Object (Blob) extension allows storing generic data on-chain, such as images and documents. This data can be read by other Solana programs and therefore be used by them, e.g., for displaying the asset in a marketplace. While storing large amounts of data in a Solana account data is quite expensive, this extension gives the ability to create fully on-chain (FOC) assets for those who wish for them.
 
-The extension consists of a `content type` and `data` fields.
+The extension consists of a `content type` and `data` fields:
 
 <!-- Begin table -->
 <table class="account-layout-table">
@@ -59,7 +59,7 @@ import TabItem from '@theme/TabItem';
     }).sendAndConfirm(umi);
     ```
   </TabItem>
-  <TabItem value="orange" label="Rust">
+  <TabItem value="rust" label="Rust">
     ```rust
     use nifty_asset::{
       extensions::{BlobBuilder, ExtensionBuilder},
@@ -85,7 +85,7 @@ import TabItem from '@theme/TabItem';
     .instruction();
     ```
   </TabItem>
-  <TabItem value="banana" label="Rust (on-chain)">
+  <TabItem value="rust on-chain" label="Rust (on-chain)">
     ```rust
     use nifty_asset::{allocate_and_write, types::ExtensionType};
 
@@ -126,7 +126,7 @@ Given an asset account, it is possible to retrieve the blob of an asset. Note th
     }
     ```
   </TabItem>
-  <TabItem value="orange" label="Rust">
+  <TabItem value="rust" label="Rust">
     ```rust
     use nifty_asset::{
       extensions::Blob,
@@ -139,12 +139,12 @@ Given an asset account, it is possible to retrieve the blob of an asset. Note th
     let account_data = account.data.as_ref();
 
     if let Some(blob) = Asset::get::<Blob>(account_data) {
-      msg!("content-type: {:?}", blob.content_type);
-      msg!("bytes: {:?}", blob.data.len());
+      println!("content-type: {:?}", blob.content_type);
+      println!("bytes: {:?}", blob.data.len());
     }
     ```
   </TabItem>
-  <TabItem value="banana" label="Rust (on-chain)">
+  <TabItem value="rust on-chain" label="Rust (on-chain)">
     ```rust
     use nifty_asset::{
       extensions::Blob,
