@@ -1,0 +1,111 @@
+---
+title: Getting Started
+sidebar_label: Getting Started
+pagination_prev: null
+pagination_next: null
+---
+import DocCardList from '@theme/DocCardList';
+
+# Getting Started
+
+The Nifty Asset JS Client is a JavaScript client that provides a set of methods for interacting with the Nifty Asset program on the Solana Virtual Machine. This guide will help you get started with the Nifty Asset JS Client and show you how to use it with the Umi framework.
+
+## Requirements
+
+- [Node.js](https://nodejs.org/) version 18 or higher
+- [NPM](https://www.npmjs.com/) or other package manager (e.g., Yarn, PNPM)
+- [TypeScript](https://www.typescriptlang.org/) version 4.0 or higher installed
+- [Solana CLI](https://docs.solanalabs.com/cli) installed (for local development)
+
+
+## Umi
+
+The Nifty Asset JS Client is built to work with the Umi framework. [Umi](https://github.com/metaplex-foundation/umi) is a lightweight JavaScript framework that is used to build Solana clients. Umi was built and is maintained by the Metaplex Foundation. The Nifty Asset JS Client is an Umi plugin that provides a set of methods for interacting with the Nifty Asset program.
+
+### Required Dependencies
+
+To get started you will need to install the following libraries:
+
+- `@metaplex-foundation/umi`: The core Umi framework [npmjs.com](https://www.npmjs.com/package/@metaplex-foundation/umi)
+- `@metaplex-foundation/umi-bundle-defaults`: Default plug-ins bundle for Umi [npmjs.com](https://www.npmjs.com/package/@metaplex-foundation/umi-bundle-defaults)
+- `@nifty-oss/asset`: The Nifty Asset JS Client [npmjs.com](https://www.npmjs.com/package/@nifty-oss/asset)
+
+Add these dependencies to your project by running the following command:
+
+```bash
+npm install \
+  @metaplex-foundation/umi \
+  @metaplex-foundation/umi-bundle-defaults \
+  @nifty-oss/asset
+```
+
+
+### Umi Configuration
+
+To use the Nifty Asset JS Client, you will need to configure Umi to use the network of your choice (e.g., Solana Mainnet, Devnet, Testnet, or Local) and the Nifty Asset plugin. Create an instance of *Umi* with the `createUmi` method, and pass in the network URL:
+
+```typescript
+import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
+
+const umi = createUmi('https://api.mainnet-beta.solana.com');
+```
+
+To configure Umi on other networks, simply replace the URL in the `createUmi` method with the RPC endpoint of your choice.
+
+## RPC Endpoints
+
+Here is a list of public RPC endpoints for Solana. Though public endpoints may be suitable for light use and testing, or production applications, we reccomend using an endpoint from a third party provider (e.g., [QuickNode](https://www.quicknode.com/chains/sol), [Helius](https://helius.xyz/)).
+
+| Network | URL |
+| --- | --- |
+| Mainnet | https://api.mainnet-beta.solana.com |
+| Devnet | https://api.devnet.solana.com |
+| Testnet | https://api.testnet.solana.com |
+| Localnet<br/>_(default)_ | http://127.0.0.1:8899 |
+
+_Replace the URL in your `createUmi` method with the network of your choice._
+
+### Local Use
+
+To interact with the Nifty Asset program on a local Solana network, you will need to deploy the program to your local network. You can deploy the program when you initiate your test validator, but you must first write the program data to a file. You can do this by running the following command:
+
+```sh
+solana program dump AssetGtQBTSgm5s91d1RAQod5JmaZiJDxqsgtqrZud73 nifty_asset.so -um
+```
+
+This command will write the current program data from mainnet (specified by use of the `-um` flag) to a file named `nifty_asset.so` in the current directory. You can then deploy the program to your local network by running the following command:
+
+```sh
+solana-test-validator -r --bpf-program AssetGtQBTSgm5s91d1RAQod5JmaZiJDxqsgtqrZud73 nifty_asset.so
+```
+
+This command will start a local Solana validator with the Nifty Asset program deployed. If set up correctly, you should be able to see the Nifty Asset program on your [local Solana Explorer](https://explorer.solana.com/address/AssetGtQBTSgm5s91d1RAQod5JmaZiJDxqsgtqrZud73?cluster=custom&customUrl=http%3A%2F%2Flocalhost%3A8899) or by verifying the program with the Solana CLI:
+
+```sh
+solana program show AssetGtQBTSgm5s91d1RAQod5JmaZiJDxqsgtqrZud73 -ul
+```
+
+## Use Nifty Asset JS Client
+
+To use the Nifty Asset JS Client, you will need to import the client and add it to your Umi instance using the `.use()` this this:
+
+```typescript
+import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
+import { niftyAsset } from '@nifty-oss/asset';
+
+const umi = createUmi('https://api.mainnet-beta.solana.com').use(niftyAsset());
+```
+
+The `.use()` method registers the Nifty Asset plugin with the Umi instance, enabling access to the Nifty Asset methods.
+
+You are all set and ready to start using the Nifty Asset JS Client with Umi. We will use this same structure throughout the documentation to demonstrate how to use the Nifty Asset JS Client with Umi, so take a moment to familiarize yourself with this setup. If you have any questions, please reach out to the Nifty Asset team on [Discord](https://discord.gg/uTMaCT7x9D).
+
+## Source Code
+
+The source code for the Nifty Asset JS Client is available on [GitHub](https://github.com/nifty-oss/asset/tree/main/clients/js/asset).<br/>
+To make contributions, please check out the [Contributing Guide](https://github.com/nifty-oss/asset/blob/main/clients/js/asset/CONTRIBUTING.md).
+
+## Methods
+
+<DocCardList />
+
