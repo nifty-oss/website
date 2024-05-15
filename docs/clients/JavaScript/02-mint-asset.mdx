@@ -1,0 +1,60 @@
+---
+title: Mint an Asset
+sidebar_label: Mint an Asset
+---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+The `mint` method in the Nifty Asset JS Client allows you to create a new digital asset.
+
+## Parameters
+
+| Arg                | Type                                                  | Description                                             | Required | Default        |
+|--------------------|-------------------------------------------------------|---------------------------------------------------------|----------|----------------|
+| **asset**          | Signer                                                | The asset account.                                      | Yes      | -              |
+| **authority**      | PublicKey \| Pda \| Signer                            | The authority of the asset.                             | No       | umi signer     |
+| **owner**          | PublicKey \| Pda                                      | The owner of the asset.                                 | No       | umi signer     |
+| **group**          | PublicKey \| Pda                                      | The asset account of the group.                         | No       | None           |
+| **groupAuthority** | Signer                                                | The group authority (required if minting to group)      | No       | None           |
+| **payer**          | Signer                                                | The account paying for the storage fees.                | No       | umi signer     |
+| **systemProgram**  | PublicKey \| Pda                                      | The system program.                                     | No       | System Program |
+| **name**           | string                                                | The name of the asset.                                  | Yes      | -              |
+| **standard**       | NonFungible \| Managed \| Soulbound \| Proxied        | The standard of the asset.                              | No       | NonFungible    |
+| **mutable**        | boolean                                               | Indicates whether the asset is mutable.                 | No       | true           |
+| **extensions**     | array of Extension methods                            | Additional extensions for the asset.                    | No       | None           |
+
+## Example Usage
+
+Below is an example function that demonstrates how to use the `mint` method to create a new digital asset:
+
+```typescript
+import { niftyAsset, mint, Standard, attributes } from '@nifty-oss/asset';
+import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
+import { TransactionBuilderSendAndConfirmOptions, generateSigner, keypairIdentity, sol } from '@metaplex-foundation/umi';
+
+const umi = createUmi('http://127.0.0.1:8899', { commitment: 'processed' }).use(niftyAsset());
+
+async function mintAsset() {
+    const creator = generateSigner(umi);
+    const owner = generateSigner(umi);
+    const asset = generateSigner(umi);
+    umi.use(keypairIdentity(creator));
+
+    await umi.rpc.airdrop(creator.publicKey, sol(100));
+
+    await mint(umi, {
+        asset,
+        owner: owner.publicKey,
+        authority: creator.publicKey,
+        payer: umi.identity,
+        name: 'Example NFT',
+        standard: Standard.NonFungible,
+        mutable: false,
+        extensions: [
+            attributes([{ name: 'head', value: 'hat' }]),
+        ]
+    }).sendAndConfirm(umi);
+}
+
+mintAsset();
+```
