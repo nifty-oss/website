@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Grouping'
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Grouping
@@ -38,7 +38,7 @@ The extension consists of:
 
 ## Creating a Group
 
-The `Grouping` extension is used to create group assets. The extension can be added using either the `allocate` or `create` instruction when creating an asset.
+The `Grouping` extension is used to create group assets. The extension can be added using either the `allocate`, `create` or `update` instructions.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

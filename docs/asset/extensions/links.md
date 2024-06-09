@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Links'
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Links
@@ -37,7 +37,7 @@ The `Links` extension represents a generic way to point to off-chain data. It co
 
 ## Creating Links
 
-The `Links` extension can be created using either the `allocate` or `create` instruction.
+The `Links` extension can be created using either the `allocate`, `create` or `update` instruction.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

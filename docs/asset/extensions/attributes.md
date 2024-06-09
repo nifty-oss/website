@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Attributes
 
-The Attributes extension allows creating a list of on-chain "traits" (key/value pairs) for an asset. The on-chain aspect means these values can be read by other Solana programs and therefore be used by them, e.g., for gaming.
+The `Attributes` extension allows creating a list of on-chain values (key/value pairs) for an asset. The on-chain aspect means these values can be read by other Solana programs and therefore be used by them (e.g., for gaming).
 
 The extension consists of a list of `Trait`s, where each trait has a `name` and a `value` field:
 
@@ -19,7 +19,7 @@ The extension consists of a list of `Trait`s, where each trait has a `name` and 
     </thead>
     <tbody>
         <tr>
-            <td><code>traits[0..n]</code></td>
+            <td><code>values[0..n]</code></td>
             <td>List of <code>Trait</code> objects.</td>
         </tr>
         <tr>
@@ -39,7 +39,7 @@ The extension consists of a list of `Trait`s, where each trait has a `name` and 
 
 ## Creating Attributes
 
-The `Attributes` extension can be created using either the `allocate` or `create` instruction.
+The `Attributes` extension can be created using either the `allocate`, `create` or `update` instructions.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -121,7 +121,7 @@ Given an asset account, it is possible to retrieve the attributes of an asset. N
     const attributes = getExtension(asset, ExtensionType.Attributes);
 
     if (attributes) {
-        attributes.traits.forEach(({ name, value }) => {
+        attributes.values.forEach(({ name, value }) => {
             console.log(name + '=' + value);
         });
     }

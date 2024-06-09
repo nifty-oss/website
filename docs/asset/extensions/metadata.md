@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Metadata'
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # Metadata
@@ -38,7 +38,7 @@ Each of these fields is limited to `255` length, but their size is not fixed &md
 
 ## Creating Metadata
 
-The `Metadata` extension can be created using either the `allocate` or `create` instruction.
+The `Metadata` extension can be created using either the `allocate`, `create` or `update` instructions.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

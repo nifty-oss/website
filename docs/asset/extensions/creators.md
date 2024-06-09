@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Creators'
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Creators
@@ -43,7 +43,7 @@ The extension consists of a list of `Creator`s:
 
 ## Adding Creators
 
-The `Creators` extension can be created using either the `allocate` or `create` instruction.
+The `Creators` extension can be created using either the `allocate`, `create` or `update` instructions.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -5,7 +5,7 @@ sidebar_position: 2
 
 # Blob
 
-The Binary Large Object (Blob) extension allows storing generic data on-chain, such as images and documents. This data can be read by other Solana programs and therefore be used by them, e.g., for displaying the asset in a marketplace. While storing large amounts of data in a Solana account data is quite expensive, this extension gives the ability to create fully on-chain (FOC) assets for those who wish for them.
+The Binary Large Object (`Blob`) extension allows storing generic data on-chain, such as images and documents. This data can be read by other Solana programs and therefore be used by them, e.g., for displaying the asset in a marketplace. While storing large amounts of data in a Solana account data is quite expensive, this extension gives the ability to create fully on-chain (FOC) assets for those who wish for them.
 
 The extension consists of a `content type` and `data` fields:
 
@@ -32,7 +32,7 @@ The extension consists of a `content type` and `data` fields:
 
 ## Creating a Blob
 
-Depending on the size of the `Blob`, there are different way you can create the extension. For blobs that fit in one transaction, you can use `allocate` or `create` instructions directly. For cases where the blob does not fit in a single transaction, it is necessary to use a combination of a single `allocate` and multiple `write` instructions.
+Depending on the size of the `Blob`, there are different way you can create the extension. For blobs that fit in one transaction, you can use `allocate`, `create` or `update` instructions directly. For cases where the blob does not fit in a single transaction, it is necessary to use a combination of a single `allocate` and multiple `write` instructions.
 
 The SDKs offer helpers to facilitate the creation of larger blobs. For example, the JS SDK offers an `initialize` helper that returns a list of instructions necessary to create a blob, given its data; the Rust SDK offers a [⎘`mint`](https://docs.rs/nifty-asset/0.4.0/nifty_asset/fn.mint.html) helper that creates an asset with any number of extensions.
 
