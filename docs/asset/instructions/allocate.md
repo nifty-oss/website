@@ -55,7 +55,7 @@ import TabItem from '@theme/TabItem';
     }).sendAndConfirm(umi);
     ```
   </TabItem>
-  <TabItem value="orange" label="Rust">
+  <TabItem value="rust" label="Rust">
     ```rust
     use nifty_asset::{
       extensions::{Attributes, AttributesBuilder, ExtensionBuilder},
@@ -78,7 +78,7 @@ import TabItem from '@theme/TabItem';
     .instruction();
     ```
   </TabItem>
-  <TabItem value="banana" label="Rust (on-chain)">
+  <TabItem value="rust on-chain" label="Rust (on-chain)">
     ```rust
     use nifty_asset::{
       extensions::{Attributes, AllocateCpiBuilder, ExtensionBuilder},
