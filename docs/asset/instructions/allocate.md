@@ -45,6 +45,9 @@ import TabItem from '@theme/TabItem';
     ```js
     import { allocate, attributes } from '@nifty-oss/asset';
 
+    // Accounts:
+    //   - asset: KeypairSigner
+    //   - payer: KeypairSigner
     await allocate(umi, {
       asset,
       payer,
