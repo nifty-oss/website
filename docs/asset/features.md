@@ -37,12 +37,12 @@ Asset accounts can be locked and unlocked. This is useful for applications such 
 
 ## Soulbound Assets
 
-Nifty Asset allows the creation of assets that cannot be transferred – these are called "soulbound" assets. These assets are created with the `Soulbound` standard, which cannot be updated after creation.
+Nifty Asset allows the creation of assets that cannot be transferred – these are called "soulbound" assets. These assets are created with the `Soulbound` standard, which cannot be changed after creation.
 
 
 ## Extensions
 
-Extensions represent additional data and behaviour that can be attached to assets. Most extensions can be added/removed from assets at any point, as long as the asset is mutable. Extensions that define the nature of the assets (e.g., `manager` extension) must be added when the asset is created.
+Extensions represent additional data and behaviour that can be attached to assets. Most extensions can be added/removed from assets at any point, as long as the asset is mutable. Extensions that define the "nature" of the assets (e.g., `manager` extension) must be added when the asset is created.
 
 One of the main advatage of having on-chain extensions is that this data can be read and manipulated by programs.
 
@@ -56,6 +56,10 @@ Off-chain attributes are also supported via the `Metadata` or `Links` extensions
 
 The `Blob` extension allows storing generic data on-chain, such as images and documents. This data can be read by other Solana programs and therefore be used by them, e.g., for displaying the asset in a marketplace.
 While storing large amounts of data in a Solana account data is quite expensive, this extension gives the ability to create fully on-chain (FOC) assets for those who wish for them.
+
+### Bucket
+
+The `Bucket` extension allows storing generic data on-chain, similarly to a `Blob` extension. The main difference is that it is not necessary to specify its content type. The data can be read by other Solana programs, making it useful to store serialized ("object") data.
 
 ### Creators
 
@@ -80,6 +84,10 @@ Since the `Manager` extension changes the nature of the asset, given that the ow
 ### Metadata
 
 The `Metadata` extension allows for assets to have on-chain description, symbol and uri pointing to off-chain metadata, for compatibility with existing NFT standards.
+
+### Properties
+
+The `Properties` extension allows creating a list of on-chain "typed" values (key/value pairs) for an asset. It currently supports three different types: `text` (as a `String` value), `number` (as an `u64` value) and `boolean`. The on-chain aspect means these values can be read by other Solana programs and therefore be used by them (e.g., for gaming).
 
 ### Proxy
 
