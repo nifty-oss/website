@@ -1,8 +1,0 @@
-{
-    "label": "Clients",
-    "position": 2,
-    "link": {
-        "type": "generated-index",
-        "description": "Rust and JavaScript clients"
-    }
-}

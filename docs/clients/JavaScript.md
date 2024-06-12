@@ -1,3 +1,0 @@
-# JavaScript Client
-
-Coming soon.

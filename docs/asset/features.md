@@ -5,65 +5,98 @@ sidebar_position: 1
 
 # Features
 
-Nifty is designed as a fully-featured digital asset standard for Solana, while also being lightweight and efficient. It is designed to be a minimalistic and flexible standard for representing non-fungible assets on Solana.
+Nifty Asset is a fully-featured digital asset standard for Solana. It is lightweight and efficient, designed to offer a small footprint (compute units consumption) and be highly flexible. The main features of the standard are:
 
-It has the following features:
+- Single account to represent a digital asset.
+- Flexible on-chain representation: store as much or as little data using optional extensions.
+- Efficient zero-copy de-/serialization to minimize compute units utilization.
+- Full-featured standard, including royalty enforcement, delegates, lock/unlock, inscriptions and groups (collections).
+- Rust and JavaScript client SDKs.
 
-* On-chain traits via the Attributes extension
-* On-chain generic data (image, gif, etc.) via the Blob extension
-* On-chain metadata via the Metadata extension
-* Royalty enforcement via the Royalty and Creators extensions
-* On-chain grouping/collections via the Collection extension
-* Pointer to off-chain data via the Link extension
-* A delegate system with various roles
-* Locking and unlocking of assets (e.g. for escrowless marketplaces)
+Extensions can be combined to create a wide variety of non-fungible assets, from simple assets with links to off-chain data to fully on-chain assets. In addition to extensions, Nifty Asset follows the [⎘Proxy Pattern](/blog/proxy-pattern) to provide developers a program interface to customize every aspect of the protocol – and it enables that without requiring direct changes to the program. The advantage of that is that developers have full flexibility to extend its behaviour in an non-opiniated way. The only requirement is to implement the [⎘program interface](https://crates.io/crates/nifty-asset-interface).
 
-Nifty extensions can be combined to create a wide variety of non-fungible assets, from simple to complex. The standard is designed to be as flexible as possible, allowing for a wide range of use cases and 
-you only pay rent for the data you actually need.
+## Single Account
 
-## Description of Features
+The `Asset` account consists of a fixed length (header) section followed by an optional variable length section (extensions). The header section contains the basic information of an asset, such as the `state`, `standard`, `name`, and `owner`. The extensions section contains additional data that can be attached to the asset.
 
-### On-Chain Traits
+Extensions can either represent additional on-chain data or used to include pointers to external data. For example, an asset can include its image on-chain as an extension or a pointer to an external image.
 
-The Nifty `Attributes` extension allows creating a list of on-chain "traits" -- key/value pairs -- for an asset. The on-chain aspect means these values can be read by other Solana programs and therefore be used by them, e.g. for gaming.
-Off-chain attributes are also supported via the `Metadata` or `Links` extensions which allow pointing to external data, similar to other NFT standards on Solana.
+## Delegate System
 
-### On-Chain Generic Data
+Nifty Asset include a delegate system with the following roles:
 
-The Nifty `Blob` extension allows storing generic data on-chain, such as images, gifs, etc. This data can be read by other Solana programs and therefore be used by them, e.g. for displaying the asset in a marketplace.
-Storing large amounts of data in Solana account data is quite expensive, but this extension gives the ability for Fully On Chain (FOC) collections for those who wish for them.
+* `Burn`
+* `Lock`
+* `Transfer`
 
-### On-Chain Metadata
+A delegate can have more than one role active at the same time. This allows creating a delegate for an asset that can perform specific actions on behalf of the owner. This is useful for escrowless marketplaces, for example.
 
-The `Metadata` extension allows for the NFT to have a symbol and uri pointing to off-chain metadata, for compatibility with existing NFT standards.
-This is one way to attach external data (e.g. image, description, traits) to a Nifty asset. In addition, the `Links` extension is a more generic way to do this.
+## Locking Assets
 
-### Royalty Enforcement
+Asset accounts can be locked and unlocked. This is useful for applications such as escrowless marketplaces and staking. When an asset is locked, it cannot be burned or transferred. Locking can be performed either by the asset owner or a delegate. Once the asset is unlocked, all instruction are permitted.
 
-Nifty encodes royalty enforcement directly into its transfer instruction, ensuring that creators receive a portion of the proceeds from secondary sales. This is done via the `Royalty` and `Creators` extensions.
-The `Creators` extension specifies the recipients and share of any royalties. The `Royalty` extension is a system of composable `Constraints` that can be used to create restrictions such as an Allowlist or Denylist.
-This can be used to exclude or include specific programs as valid owners of the asset, similar to the approach used by pNFTs in the Metaplex standard.
+## Soulbound Assets
 
-### On-Chain Grouping/Collections
+Nifty Asset allows the creation of assets that cannot be transferred – these are called "soulbound" assets. These assets are created with the `Soulbound` standard, which cannot be changed after creation.
 
-Nifty Assets can be part of an on-chain group or collection using the `Group` field on the Asset. A group asset is created and the members of the group point to the asset in their `Group` field.
-This can be used to specify attributes that are common to all assets in the group, such as Royalties or specific Traits. Transfers of members of a group also require the Group asset to be passed in so any potential royalties constraints can be evaluated.
 
-### Pointer to Off-Chain Data
+## Extensions
 
-In addition to the `Metadata` extension discussed above, the `Link` extension allows for a more generic way to point to off-chain data. This can be used to point to any off-chain data, not just metadata.
-The `Links` extension consists of a list of `Link` structs, each of which contains a `Name` and a `Uri`.
+Extensions represent additional data and behaviour that can be attached to assets. Most extensions can be added/removed from assets at any point, as long as the asset is mutable. Extensions that define the "nature" of the assets (e.g., `manager` extension) must be added when the asset is created.
 
-### Delegate System
+One of the main advatage of having on-chain extensions is that this data can be read and manipulated by programs.
 
-Nifty assets include a delegate system with the following roles:
+### Attributes
 
-* Burn
-* Lock
-* Transfer
+The `Attributes` extension allows creating a list of on-chain "traits" (key/value pairs) for an asset. The on-chain aspect means these values can be read by other Solana programs and therefore be used by them, e.g., for gaming.
 
-This allows creating a delegate for a Nifty asset that can perform specific actions on behalf of the owner. This is useful for escrowless marketplaces, for example.
+Off-chain attributes are also supported via the `Metadata` or `Links` extensions, which allow pointing to external data, similar to other NFT standards on Solana.
 
-### Locking and Unlocking of Assets
+### Binary Large Object (Blob)
 
-Nifty assets can be locked and unlocked. This is useful for applications such as escrowless marketplaces. When an asset is locked, it cannot be transferred. When an asset is unlocked, it can be transferred again.
+The `Blob` extension allows storing generic data on-chain, such as images and documents. This data can be read by other Solana programs and therefore be used by them, e.g., for displaying the asset in a marketplace.
+While storing large amounts of data in a Solana account data is quite expensive, this extension gives the ability to create fully on-chain (FOC) assets for those who wish for them.
+
+### Bucket
+
+The `Bucket` extension allows storing generic data on-chain, similarly to a `Blob` extension. The main difference is that it is not necessary to specify its content type. The data can be read by other Solana programs, making it useful to store serialized ("object") data.
+
+### Creators
+
+The `Creators` extension allows adding a list of creators to an asset, specifying their status (`verified` or not) and a percentage share. In most cases, this extension is used in combination with `Royalties` to determine the addresses that should received royalties. There is no limit on how many creators can be added to an asset.
+
+### Grouping
+
+Assets can be part of an on-chain group (collection). A group asset is created using the `Grouping` extension, which specify the maximum size of the group (or indicates that the group has no upper limit) and its current size. Member assets of the group point to the group asset in their `group` account field.
+
+A group asset can be used to specify configuration values that are common to all assets in the group, such as creators, royalties or specific attributes. This provides a cost-effective way to store information on-chain that applies to multiple assets.
+
+### Links
+
+The `Links` extension enables a generic way to point to off-chain data. It consists of a list of link pairs, each of which contains a `name` and a `uri`. This can be used to point to any additional off-chain data or resources.
+
+### Manager
+
+For use cases where the asset needs to be controlled (managed) by a third-party address, Nifty Asset allows the creation of "managed" assets. These assets have the `Manager` extension enabled, which defines a delegate address with customizable permissions.
+
+Since the `Manager` extension changes the nature of the asset, given that the owner does not have full ownership of the asset, the extension must be enabled at the creation point and cannot be removed. To clearly distinguish "managed" assets from the others, the `standard` account field is set to `Managed` in this case. 
+
+### Metadata
+
+The `Metadata` extension allows for assets to have on-chain description, symbol and uri pointing to off-chain metadata, for compatibility with existing NFT standards.
+
+### Properties
+
+The `Properties` extension allows creating a list of on-chain "typed" values (key/value pairs) for an asset. It currently supports three different types: `text` (as a `String` value), `number` (as an `u64` value) and `boolean`. The on-chain aspect means these values can be read by other Solana programs and therefore be used by them (e.g., for gaming).
+
+### Proxy
+
+In addition to extensions, Nifty Asset implements the [⎘Proxy Pattern](/blog/proxy-pattern) to allow developers extens the program behaviour. The `Proxy` extension is used to identify accounts that are "proxied" – these accounts will be required to be a signer on instructions that manipulate them. The extension stores the information for clients to determine the address of the proxy program; it also includes the `seeds` and `bump` information for a proxy program to add a signature for the account.
+
+Since "proxied" accounts need to be created by a proxy program, the extension must be enabled at the creation point and cannot be removed. To clearly distinguish "proxied" assets from the others, the `standard` account field is set to `Proxied` in this case. 
+
+### Royalties
+
+Nifty Asset encodes royalty enforcement directly into its transfer instruction using a system of composable `Constraint`s that can be used to create restrictions such as an Allowlist or Denylist, ensuring creators receive a portion of the proceeds from secondary sales. This is done via the `Royalties` extension, where creators can configure the royalties percentage and constraints. These can be used to exclude or include specific programs as valid owners of the asset, similar to the approach used by Programmable NFTs in the Metaplex standard.
+
+The `Royalties` extension is used in combination with the `Creators` extension in most cases, where the `Creators` extension specifies the recipients and share of any royalties.

@@ -1,0 +1,8 @@
+{
+    "label": "Extensions",
+    "position": 4,
+    "link": {
+        "type": "generated-index",
+        "description": "List of optional extensions that can be atteched to assets."
+    }
+}

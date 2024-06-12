@@ -1,0 +1,8 @@
+{
+    "label": "Instructions",
+    "position": 5,
+    "link": {
+        "type": "generated-index",
+        "description": "List of instructions available on Nifty Asset program."
+    }
+}
