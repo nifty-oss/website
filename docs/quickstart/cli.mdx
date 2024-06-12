@@ -1,10 +1,11 @@
 ---
-sidebar_position: 3
+title: Getting Started - CLI
+sidebar_label: Nifty CLI
+pagination_prev: null
+pagination_next: null
 ---
 
-# Quickstart
-
-## CLI
+# Nifty CLI
 
 You can install the bundled Nifty CLI to start playing around with Nift assets.
 
@@ -193,78 +194,4 @@ To print a specific field, you can use the `--field` option:
 
 ```bash
 nifty decode 5to4wpbDE1KkBHKgFYFVEBz3UBFRqpovSgQYJzSbTe85 --field name
-```
-
-## JS Client
-
-You can also use the Nifty JS client to interact with Nifty Assets. First, generate it with `pnpm` from the root directory of the `nifty-asset` respository:
-
-Build the programs:
-
-```bash
-pnpm programs:build
-```
-
-Generate the JS and Rust clients:
-
-```bash
-pnpm generate:clients
-```
-
-or generate both the clients and the IDL:
-
-```bash
-pnpm generate
-```
-
-This will generate the JS client in the `clients/js` directory. You can use it to interact with the Nifty Asset program.
-
-In this example we use the "mint" helper function to allocate a new asset with some extensions, write the extension data and then
-create the asset.
-
-```typescript
-import { Connection, PublicKey } from '@solana/web3.js';
-import {
-  Asset,
-  Discriminator,
-  ExtensionType,
-  Standard,
-  State,
-  attributes,
-  fetchAsset,
-  links,
-  niftyAsset,
-  mint,
-} from '@nifty-oss/asset';
-import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
-
-const umi = (await createUmi()).use(niftyAsset());
-const connection = new Connection(umi);
-
-const asset = generateSigner(umi);
-const holder = generateSigner(umi);
-
-await mint(umi, {
-asset,
-holder: holder.publicKey,
-payer: umi.identity,
-name: 'Digital Asset',
-extensions: [
-    attributes([
-    { traitType: 'Attributes Count', value: '2' },
-    { traitType: 'Type', value: 'Dark' },
-    { traitType: 'Clothes', value: 'Purple Shirt' },
-    { traitType: 'Ears', value: 'None' },
-    { traitType: 'Mouth', value: 'None' },
-    { traitType: 'Eyes', value: 'None' },
-    { traitType: 'Hat', value: 'Blue Cap' },
-    ]),
-    links([
-    {
-        name: 'metadata',
-        uri: 'https://arweave.net/ebBV1qEYt65AKmM2J5wH_Vg-gjBa9YcwSYWFVt0rw9w',
-    },
-    ]),
-],
-}).sendAndConfirm(umi);
 ```
