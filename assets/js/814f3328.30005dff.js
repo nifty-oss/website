@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunknifty_docs=self.webpackChunknifty_docs||[]).push([[7472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Extending program behaviour using a Proxy Pattern","permalink":"/blog/proxy-pattern","unlisted":false}]}')}}]);

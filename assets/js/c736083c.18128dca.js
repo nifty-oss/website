@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunknifty_docs=self.webpackChunknifty_docs||[]).push([[4308],{7246:s=>{s.exports=JSON.parse('{"label":"program","permalink":"/blog/tags/program","allTagsPath":"/blog/tags","count":1,"unlisted":false}')}}]);

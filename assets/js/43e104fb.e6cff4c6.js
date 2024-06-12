@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunknifty_docs=self.webpackChunknifty_docs||[]).push([[2250],{5314:e=>{e.exports=JSON.parse('{"title":"Nifty Asset","description":"A lightweight standard for non-fungible assets.","slug":"/category/nifty-asset","permalink":"/docs/category/nifty-asset","navigation":{"next":{"title":"Overview","permalink":"/docs/asset/overview"}}}')}}]);
