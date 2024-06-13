@@ -85,8 +85,8 @@ const config = {
                 to: "/docs/asset/overview"
               },
               {
-                label: "Quickstart",
-                to: "/docs/quickstart"
+                label: "Getting Started",
+                to: "/docs/category/getting-started"
               }
             ]
           },
