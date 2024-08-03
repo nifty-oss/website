@@ -1,4 +1,4 @@
-# Website
+# <img height="50" alt="limestone" src="https://github.com/user-attachments/assets/2bde9302-a7db-472e-a1b6-bbb40622d949"/>
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
