@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunknifty_docs=self.webpackChunknifty_docs||[]).push([[3257],{9738:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/extensions","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
