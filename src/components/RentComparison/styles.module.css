@@ -1,0 +1,168 @@
+.wrapper {
+  margin: 1.5rem 0 2rem;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-color-emphasis-100);
+}
+
+.controlLabel {
+  font-weight: 700;
+  margin: 0;
+}
+
+.select {
+  flex: 1 1 320px;
+  min-width: 240px;
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  color: var(--ifm-font-color-base);
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-400);
+  border-radius: var(--ifm-global-radius);
+}
+
+.rateBadge {
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  color: #1a7f37;
+  background: rgba(46, 160, 67, 0.16);
+  white-space: nowrap;
+}
+
+.caption,
+.footnote {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.footnote {
+  font-size: 0.82rem;
+  margin-top: 0.75rem;
+}
+
+.tableScroll {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.table th,
+.table td {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  padding: 0.6rem 0.75rem;
+  vertical-align: top;
+  text-align: center;
+}
+
+.colHead {
+  background: var(--ifm-color-emphasis-200);
+  font-weight: 700;
+}
+
+.rowHead {
+  text-align: left;
+  font-weight: 700;
+  background: var(--ifm-color-emphasis-100);
+  white-space: nowrap;
+}
+
+.subhead {
+  display: block;
+  font-weight: 400;
+  font-style: italic;
+  font-size: 0.8rem;
+  white-space: normal;
+  max-width: 16rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.cost {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.delta {
+  font-weight: 700;
+  font-size: 0.82rem;
+  margin-top: 0.15rem;
+}
+
+.note {
+  font-style: italic;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.plain {
+  text-align: center;
+}
+
+/* magnitude tones — semi-transparent fills plus a solid left-edge accent, so
+   the ranking reads at a glance in both light and dark themes. */
+.good {
+  background: rgba(46, 160, 67, 0.16);
+  box-shadow: inset 3px 0 0 rgba(46, 160, 67, 0.85);
+}
+
+.warn {
+  background: rgba(219, 158, 30, 0.2);
+  box-shadow: inset 3px 0 0 rgba(219, 158, 30, 0.9);
+}
+
+.bad {
+  background: rgba(229, 83, 75, 0.16);
+  box-shadow: inset 3px 0 0 rgba(229, 83, 75, 0.9);
+}
+
+/* small legend under the selector */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 3px;
+  flex: 0 0 auto;
+}
+
+.swatchGood {
+  background: rgba(46, 160, 67, 0.5);
+  box-shadow: inset 3px 0 0 rgba(46, 160, 67, 0.9);
+}
+
+.swatchWarn {
+  background: rgba(219, 158, 30, 0.55);
+  box-shadow: inset 3px 0 0 rgba(219, 158, 30, 0.95);
+}
+
+.swatchBad {
+  background: rgba(229, 83, 75, 0.5);
+  box-shadow: inset 3px 0 0 rgba(229, 83, 75, 0.95);
+}
